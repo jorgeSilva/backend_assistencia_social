@@ -80,10 +80,22 @@ class UserController{
         },
         secret
       )
-      res.status(200).json({ token })
+      res.status(200).json({ user, token })
     }catch(error){
       res.status(500).json(error)
     }
+  }
+
+  async index(req, res){
+    const { _id } = req.params
+
+    const userExist = await User.findById(_id, '-senha')
+
+    if(!userExist){
+      return res.status(400).json({error: 'Usuário não encontrado'})
+    }
+
+    res.status(200).json(userExist)
   }
 }
 
