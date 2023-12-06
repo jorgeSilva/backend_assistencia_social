@@ -8,8 +8,10 @@ server.use(cors())
 server.use(express.json())
 
 const UserRoutes = require('./routes/UserRote')
+const FamiliaRoutes = require('./routes/FamiliaRoute')
 
 server.use(UserRoutes)
+server.use(FamiliaRoutes)
 
 const PORT = process.env.PORT
 
