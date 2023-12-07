@@ -10,10 +10,12 @@ server.use(express.json())
 const UserRoutes = require('./routes/UserRote')
 const FamiliaRoutes = require('./routes/FamiliaRoute')
 const IntegranteRoutes = require('./routes/IntegranteRoute')
+const ExcluidosRoutes = require('./routes/ExcluidosRoute')
 
 server.use(UserRoutes)
 server.use(FamiliaRoutes)
 server.use(IntegranteRoutes)
+server.use(ExcluidosRoutes)
 
 const PORT = process.env.PORT
 
