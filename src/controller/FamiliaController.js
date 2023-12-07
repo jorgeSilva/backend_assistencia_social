@@ -117,6 +117,64 @@ class FamiliaController{
       return res.status(200).json({idExist})
     }
   }
+
+  async update(req, res){
+    const schema = Yup.object().shape({
+      nome: Yup.string().required(),
+      cpf: Yup.number().required(),
+      parentesco: Yup.string().required(),
+      responsavel: Yup.boolean().required(),
+      dataNasc: Yup.date().required(),
+      nis: Yup.string().required(),
+      inicio: Yup.date().required(),
+      fim: Yup.date(),
+      nFilhosMaior: Yup.number(),
+      nFilhosMenor: Yup.number(),
+      residencia: Yup.string().required(),
+      idoso: Yup.boolean().required(),
+      bpc: Yup.boolean().required(),
+      contato: Yup.string().required(),
+      rua: Yup.string().required(),
+      bairro: Yup.string().required(),
+      nCasa: Yup.number().required(),
+      complemento: Yup.string(),
+      areaDeRisco: Yup.string().required(),
+      fkUserCad: Yup.string().required()
+    })
+
+    const {_id } = req.params 
+    const {
+      nome,
+      cpf,
+      parentesco,
+      responsavel,
+      dataNasc,
+      nis,
+      inicio,
+      fim,
+      nFilhosMaior,
+      nFilhosMenor,
+      residencia,
+      idoso,
+      bpc,
+      contato,
+      rua,
+      bairro,
+      nCasa,
+      complemento,
+      areaDeRisco,
+      fkUserCad
+    } = req.body
+
+    if(!(await schema.isValid(req.body))){
+      return res.status(400).json({error: 'Erro na validação dos campos.'})
+    }
+
+    await Familia.findByIdAndUpdate(
+      {'_id':_id}, req.body, {new: true}
+    ).then(r => res.status(200).json(r)).catch((e) => res.status(400).json(e))
+
+  }
 }
 
 module.exports = new FamiliaController()

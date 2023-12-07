@@ -6,6 +6,8 @@ const UserMiddleware = require('../middleware/UserMiddleware')
 
 familiaRouter.post('/familia', FamiliaController.store)
 
+familiaRouter.put('/familia/update/:_id', FamiliaController.update)
+
 familiaRouter.get('/familia/show',UserMiddleware, FamiliaController.show)
 familiaRouter.get('/familia/:_id',UserMiddleware, FamiliaController.index)
 
