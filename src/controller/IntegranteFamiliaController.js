@@ -73,6 +73,28 @@ class IntegranteFamilia{
       return res.status(200).json(idExist)
     }
   }
+
+  async update(req, res){
+    const schema = Yup.object().shape({
+      nome: Yup.string().required(),
+      dataNasc: Yup.date().required(),
+      parentesco: Yup.string().required(),
+      cpf: Yup.string().required(),
+      fkFamilia: Yup.string().required()
+    })
+
+    const { nome, dataNasc, parentesco, cpf, fkFamilia } = req.body
+    const {_id } = req.params 
+
+    if(!(await schema.isValid(req.body))){
+      return res.status(400).json({error: 'Erro na validação dos campos.'})
+    }
+
+    await Integrante.findByIdAndUpdate(
+      {'_id':_id}, req.body, {new: true}
+    ).then(r => res.status(200).json(r)).catch((e) => res.status(400).json(e))
+
+  }
 }
 
 module.exports = new IntegranteFamilia()
