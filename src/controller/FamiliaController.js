@@ -118,6 +118,96 @@ class FamiliaController{
     }
   }
 
+  async filter(req, res){
+    const { id, filter } = req.params
+
+    if(!filter){
+      return res.status(400).json({error: 'Filtro inválido.'})
+    }
+
+    if(id === 'nome'){
+      return await Familia.find({
+        nome: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'cpf'){
+      return await Familia.find({
+        cpf: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'parentesco'){
+      return await Familia.find({
+        parentesco: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'responsavel'){
+      return await Familia.find({
+        responsavel: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'dataNasc'){
+      return await Familia.find({
+        dataNasc: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'nis'){
+      return await Familia.find({
+        nis: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'inicio'){
+      return await Familia.find({
+        inicio: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'fim'){
+      return await Familia.find({
+        fim: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'nFilhosMaior'){
+      return await Familia.find({
+        nFilhosMaior: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'nFilhosMaior'){
+      return await Familia.find({
+        nFilhosMaior: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'residencia'){
+      return await Familia.find({
+        residencia: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'idoso'){
+      return await Familia.find({
+        idoso: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'bpc'){
+      return await Familia.find({
+        bpc: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'contato'){
+      return await Familia.find({
+        contato: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'rua'){
+      return await Familia.find({
+        rua: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'bairro'){
+      return await Familia.find({
+        bairro: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'nCasa'){
+      return await Familia.find({
+        nCasa: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'complemento'){
+      return await Familia.find({
+        complemento: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'areaDeRisco'){
+      return await Familia.find({
+        areaDeRisco: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }else if(id === 'fkUserCad'){
+      return await Familia.find({
+        fkUserCad: {'$eq': filter}
+      }).then(r => res.status(200).json(r)).catch(e => res.status(400).json(e))
+    }
+  }
+
   async update(req, res){
     const schema = Yup.object().shape({
       nome: Yup.string().required(),

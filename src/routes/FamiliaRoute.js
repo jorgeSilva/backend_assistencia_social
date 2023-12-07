@@ -11,5 +11,6 @@ familiaRouter.delete('/familia/delete/:_id', UserMiddleware, FamiliaController.d
 
 familiaRouter.get('/familia/show', UserMiddleware, FamiliaController.show)
 familiaRouter.get('/familia/:_id', UserMiddleware, FamiliaController.index)
+familiaRouter.get('/familia/:id/:filter', UserMiddleware, FamiliaController.filter)
 
 module.exports = familiaRouter
