@@ -95,6 +95,28 @@ class FamiliaController{
       res.status(500).json({msg: 'Aconteceu um erro inesperado, volte mais tarde.'})
     }
   }
+
+  async show(req, res){
+    await Familia.find()
+      .then(r => res.status(200).json(r))
+        .catch(e => res.status(400).json(e))
+  }
+
+  async index(req, res){
+    const { _id } = req.params
+
+    if(!_id){
+      return res.status(400).json({error: `Id inválido: ${_id}`})
+    }
+
+    const idExist = await Familia.findById(_id).populate('fkUserCad')
+
+    if(!idExist){
+      return res.status(400).json({error: 'Familia não encontrada.'})
+    }else{
+      return res.status(200).json({idExist})
+    }
+  }
 }
 
 module.exports = new FamiliaController()
