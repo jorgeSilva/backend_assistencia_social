@@ -175,6 +175,18 @@ class FamiliaController{
     ).then(r => res.status(200).json(r)).catch((e) => res.status(400).json(e))
 
   }
+
+  async delete(req, res){
+    const {_id } = req.params
+
+    if(!_id){
+      return res.status(400).json({error: `Id inválido: ${_id}`})
+    }
+
+    await Familia.deleteOne({'_id': _id})
+      .then(() => res.status(200).json({msg:'Deletado com sucesso.'}))
+        .catch(() => res.status(400).json({error: 'Não foi encontrado o produto informado'}))
+  }
 }
 
 module.exports = new FamiliaController()
