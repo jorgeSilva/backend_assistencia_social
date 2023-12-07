@@ -46,6 +46,33 @@ class IntegranteFamilia{
       res.status(500).json({msg: 'Aconteceu um erro inesperado, volte mais tarde.'})
     }
   }
+
+  async show(req, res){
+    const { fkFamilia } = req.params
+
+    const familiaExist = await Familia.findById(fkFamilia)
+
+    if(!familiaExist) res.status(400).json('Familia não encontrada.')
+
+    await Integrante.find({
+      fkFamilia: {'$eq': fkFamilia}
+    }).then(r => res.status(200).json(r))
+    .catch((e) => res.status(400).json(e))
+  }
+
+  async index(req, res){
+    const { _id } = req.params
+
+    if(!_id) return res.status(400).json({error: `Id inválido: ${_id}`})
+
+    const idExist = await Integrante.findById(_id)
+
+    if(!idExist){
+      return res.status(400).json({error: 'Familia não encontrada.'})
+    }else{
+      return res.status(200).json(idExist)
+    }
+  }
 }
 
 module.exports = new IntegranteFamilia()
