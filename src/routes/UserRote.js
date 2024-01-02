@@ -8,5 +8,6 @@ userRoutes.post('/usuario', UserController.store)
 userRoutes.post('/usuario/login', UserController.login)
 
 userRoutes.get('/usuario/:_id', UserMiddleware, UserController.index)
+userRoutes.get('/usuario', UserMiddleware, UserController.show)
 
 module.exports = userRoutes
