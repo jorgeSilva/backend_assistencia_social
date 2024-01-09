@@ -1,12 +1,12 @@
 const express = require('express')
-const ExcluidosRoutes = express.Router()
+const excluidosRoutes = express.Router()
 
 const ExcluidosController = require('../controller/ExcluidosController')
 const UserMiddleware = require('../middleware/UserMiddleware')
 
-ExcluidosRoutes.post('/familia/excluidos', ExcluidosController.store)
+excluidosRoutes.post('/familia/excluidos', ExcluidosController.store)
 
-ExcluidosRoutes.get('/familia/excluidos/show',UserMiddleware, ExcluidosController.show)
-ExcluidosRoutes.get('/familia/excluidos/:_id',UserMiddleware, ExcluidosController.index)
+excluidosRoutes.get('/excluidos/show',UserMiddleware, ExcluidosController.show)
+excluidosRoutes.get('/familia/excluidos/:_id',UserMiddleware, ExcluidosController.index)
 
-module.exports = ExcluidosRoutes
+module.exports = excluidosRoutes
