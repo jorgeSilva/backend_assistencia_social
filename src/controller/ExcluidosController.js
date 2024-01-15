@@ -98,7 +98,7 @@ class ExcluidosController{
   }
 
   async show(req, res){
-    await Excluido.find()
+    await Excluido.find().populate('fkUserCad')
       .then(r => res.status(200).json(r))
         .catch(e => res.status(400).json(e))
   }
