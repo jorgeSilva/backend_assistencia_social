@@ -97,7 +97,7 @@ class FamiliaController{
   }
 
   async show(req, res){
-    await Familia.find()
+    await Familia.find().populate('fkfkUserCad')
       .then(r => res.status(200).json(r))
         .catch(e => res.status(400).json(e))
   }
