@@ -50,7 +50,7 @@ class IntegranteFamilia{
   async show(req, res){
     const { fkFamilia } = req.params
 
-    const familiaExist = await Familia.findById(fkFamilia)
+    const familiaExist = await Familia.findById(fkFamilia).populate('fkFamilia')
 
     if(!familiaExist) res.status(400).json('Familia não encontrada.')
 
@@ -65,7 +65,7 @@ class IntegranteFamilia{
 
     if(!_id) return res.status(400).json({error: `Id inválido: ${_id}`})
 
-    const idExist = await Integrante.findById(_id)
+    const idExist = await Integrante.findById(_id).populate('fkFamilia')
 
     if(!idExist){
       return res.status(400).json({error: 'Familia não encontrada.'})
