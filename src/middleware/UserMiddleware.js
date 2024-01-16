@@ -6,7 +6,7 @@ const UserMiddleware = (req, res, next) => {
   const token = authUser && authUser.split(' ')[1]
 
   if(!token){
-    return res.status(401).json({error: 'Acesso negado.'})
+    return res.status(400).json({error: 'Acesso negado.'})
   }
 
   try{
