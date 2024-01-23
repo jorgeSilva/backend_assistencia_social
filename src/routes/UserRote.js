@@ -10,4 +10,6 @@ userRoutes.post('/usuario/login', UserController.login)
 userRoutes.get('/usuario/:_id', UserMiddleware, UserController.index)
 userRoutes.get('/usuario', UserMiddleware, UserController.show)
 
+userRoutes.delete('/usuario/delete/:_id', UserMiddleware, UserController.delete)
+
 module.exports = userRoutes
